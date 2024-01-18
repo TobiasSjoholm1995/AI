@@ -182,8 +182,8 @@ class PaintApp:
 
 def main():
    try:
-      root = tk.Tk()
       ai   = AI()
+      root = tk.Tk()
       app  = PaintApp(root, ai.predict_image)
 
       root.mainloop()
