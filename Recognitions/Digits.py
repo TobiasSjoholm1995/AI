@@ -14,7 +14,7 @@ from PIL import Image
 from tensorflow.keras.layers   import BatchNormalization, Flatten, Dropout, Dense, Conv2D
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.utils    import to_categorical
-from tensorflow.keras.models   import save_model, load_model
+from tensorflow.keras.models   import Sequential, save_model, load_model
 
 
 IMAGE_SIZE_X      = 28
