@@ -84,7 +84,7 @@ class AI:
          return
       
       train_images, train_labels, test_images, test_labels = DataManager.get_mnist_data()
-      self.model.fit(train_images, train_labels, epochs=15, batch_size=64)
+      self.model.fit(train_images, train_labels, epochs=20, batch_size=64)
       test_loss, test_acc = self.model.evaluate(test_images, test_labels)
 
       print(f'Test Accuracy: {test_acc}')
