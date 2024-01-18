@@ -22,7 +22,7 @@ IMAGE_SIZE_Y      = 28
 DEBUG_MODE        = False
 IMAGE_FILEPATH    = "digit.jpg"
 MODIFIED_FILEPATH = "digit_preprocessed.jpg"
-MODEL_FILEPATH    = "hand_writing_model.h5"
+MODEL_FILEPATH    = "digits_model.h5"
 
 
 class DataManager:
