@@ -10,11 +10,11 @@ import cv2
 import numpy as np
 import tkinter as tk
 import tensorflow as tf
-from PIL import Image, ImageTk
-from tensorflow.keras import layers, models
+from PIL import Image
+from tensorflow.keras.layers   import BatchNormalization, Flatten, Dropout, Dense, Conv2D
 from tensorflow.keras.datasets import mnist
-from tensorflow.keras.utils import to_categorical
-from tensorflow.keras.models import save_model, load_model
+from tensorflow.keras.utils    import to_categorical
+from tensorflow.keras.models   import save_model, load_model
 
 
 IMAGE_SIZE_X      = 28
@@ -97,16 +97,28 @@ class AI:
       if self.is_trained:
          return load_model(MODEL_FILEPATH)
 
-      model = models.Sequential()
-      model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
-      model.add(layers.MaxPooling2D((2, 2))) 
-      model.add(layers.Conv2D(64, (3, 3), activation='relu'))
-      model.add(layers.MaxPooling2D((2, 2)))
-      model.add(layers.Conv2D(64, (3, 3), activation='relu'))
-      model.add(layers.Flatten())
-      model.add(layers.Dense(64, activation='relu'))
-      model.add(layers.Dense(10, activation='softmax'))
-      model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+      model = Sequential()
+      model.add(Conv2D(32,kernel_size=3,activation='relu',input_shape=(28,28,1)))
+      model.add(BatchNormalization())
+      model.add(Conv2D(32,kernel_size=3,activation='relu'))
+      model.add(BatchNormalization())
+      model.add(Conv2D(32,kernel_size=5,strides=2,padding='same',activation='relu'))
+      model.add(BatchNormalization())
+      model.add(Dropout(0.4))
+      model.add(Conv2D(64,kernel_size=3,activation='relu'))
+      model.add(BatchNormalization())
+      model.add(Conv2D(64,kernel_size=3,activation='relu'))
+      model.add(BatchNormalization())
+      model.add(Conv2D(64,kernel_size=5,strides=2,padding='same',activation='relu'))
+      model.add(BatchNormalization())
+      model.add(Dropout(0.4))
+      model.add(Flatten())
+      model.add(Dense(128, activation='relu'))
+      model.add(BatchNormalization())
+      model.add(Dropout(0.4))
+      model.add(Dense(10, activation='softmax'))
+
+      model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
       return model
 
 
