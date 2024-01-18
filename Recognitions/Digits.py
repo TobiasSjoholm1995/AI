@@ -170,9 +170,9 @@ class PaintApp:
 
 def main():
    try:
-      root  = tk.Tk()
-      ai    = AI()
-      app   = PaintApp(root, ai.predict_image)
+      root = tk.Tk()
+      ai   = AI()
+      app  = PaintApp(root, ai.predict_image)
 
       root.mainloop()
    except Exception as err:
