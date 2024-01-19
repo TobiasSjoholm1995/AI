@@ -11,7 +11,6 @@ class Agent:
 
 
    def get_model(self):
-      #dont need this heavy NN, but just to show that u can use dropout if you want...
       model = Sequential()
       model.add(Dense(256, activation='relu', input_shape=(2,)))
       model.add(Dropout(0.5))
