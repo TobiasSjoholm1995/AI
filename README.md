@@ -26,11 +26,11 @@ To run the scripts in this repository, ensure that you have the following depend
 You can install the required packages using the following command:
 
 Download https://ghostscript.com/releases/gsdnld.html  (restart IDE after)
-pip install tensorflow
-pip install pillow
-pip install opencv-python
-pip install tk
-pip install PIL
+- pip install tensorflow
+- pip install pillow
+- pip install opencv-python
+- pip install tk
+- pip install PIL
 
 
 ## License
