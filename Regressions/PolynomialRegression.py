@@ -37,7 +37,7 @@ def plot(x, y, predictions):
 
 
 def train_model(model):
-    x, y = generate_data(5000)
+    x, y = generate_data(2500)
     model.fit(x, y, epochs=100, verbose=0)
 
 
