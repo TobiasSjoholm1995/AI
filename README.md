@@ -15,21 +15,13 @@ The repository is organized as follows:
 ### Requirements
 To run the scripts in this repository, ensure that you have the following dependencies installed:
 
-- Python (version 3.x)
-- TensorFlow (version 2.x)
-- NumPy
-- TKinter
-- GhostrScript (for postscripts to covnert ps to JPG images)
-- OpenCV
-- PIL
-
-Make sure to download https://ghostscript.com/releases/gsdnld.html  (restart IDE after)
-You can install the required Python packages using the following commands:
-- pip install tensorflow
-- pip install pillow
-- pip install opencv-python
-- pip install tk
-- pip install PIL
+- Python:  https://www.python.org/downloads/
+- TensorFlow:  pip install tensorflow 
+- NumPy:  pip install np
+- TKinter:  pip install tk
+- GhostScript:  https://ghostscript.com/releases/gsdnld.html  (restart IDE after)
+- OpenCV:  pip install opencv-python
+- PIL:  pip install pillow
 
 
 ## License
