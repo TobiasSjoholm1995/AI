@@ -8,7 +8,7 @@ The repository is organized as follows:
 
 - Classifications: This directory contains Python scripts that focus on solving classifications problems, such as Binary and Multi-Class classifications. 
 
-- Recognition: Delves into the realm of neural network models designed for the identification of handwritten characters. Leveraging the NMIST dataset for training data. The script employs the TKinter library to create a graphical user interface (GUI). This interface enables users to draw digits and the neural network tries to predict the digit. The GUI not only displays the prediction but also conveys the confidence associated with the model's recognition.
+- Recognitions: Delves into the realm of neural network models designed for the identification of handwritten characters. Leveraging the NMIST dataset for training data. The script employs the TKinter library to create a graphical user interface (GUI). This interface enables users to draw digits and the neural network tries to predict the digit. The GUI not only displays the prediction but also conveys the confidence associated with the model's recognition.
 
 - Info: Contains information about activation functions and loss functions that can be used as a lookup when needed in the future.
 
