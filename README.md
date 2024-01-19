@@ -1,7 +1,7 @@
 ## Neural Network Experiments
 
 ### Overview
-This repository contains Python scripts that explore various types of neural network architectures to solve different problems, including binary classification, multi-class classification and hand-writing recognition. The purpose of these experiments is to evaluate the performance of different neural network models on diverse tasks and gain insights into their strengths and limitations.
+This repository contains Python scripts that explore various types of neural network architectures to solve different problems, including classification, regression and recognition. The purpose of these experiments is to evaluate the performance of different neural network models on diverse tasks and gain insights into their strengths and limitations.
 
 ### Project Structure
 The repository is organized as follows:
@@ -9,6 +9,8 @@ The repository is organized as follows:
 - Classifications: This directory contains Python scripts that focus on solving classifications problems, such as Binary and Multi-Class classifications. 
 
 - Recognitions: Delves into the realm of neural network models designed for the identification of handwritten characters. Leveraging the NMIST dataset for training data. The script employs the TKinter library to create a graphical user interface (GUI). This interface enables users to draw digits and the neural network tries to predict the digit. The GUI not only displays the prediction but also conveys the confidence associated with the model's recognition.
+
+- Regression: Performs a linear and polynomial regression with the help of neuron networks.
 
 - Info: Contains information about activation functions and loss functions that can be used as a lookup when needed in the future.
 
