@@ -19,7 +19,8 @@ The repository is organized as follows:
 ### Preview
 
 Executing handwriting recognition through an artificial neural network:
-![image](https://github.com/TobiasSjoholm1995/AI/assets/43572826/6ad8e476-3760-41ec-8317-61766b3310ef)
+![image](https://github.com/TobiasSjoholm1995/AI/assets/43572826/404906f8-f405-44ce-b03c-e0379122b17b)
+
 
 
 ### Requirements
