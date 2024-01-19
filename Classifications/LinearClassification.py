@@ -1,0 +1,72 @@
+import math
+import tensorflow as tf
+import numpy as np
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout
+
+
+class Agent:
+   def __init__(self):
+      self.model = self.get_model()
+
+
+   def get_model(self):
+      model = Sequential()
+      model.add(Dense(64, activation='relu', input_shape=(2,)))
+      model.add(Dense(32,  activation='relu'))
+      model.add(Dense(32,  activation='relu'))
+      model.add(Dense(1,   activation='sigmoid'))
+      model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+      return model
+
+
+   def train(self, input, output):
+      self.model.fit(input, output, epochs=20, batch_size=64)
+
+
+class Env:
+
+   def get_data(self, count, print=False):
+      x      = np.random.randint(-100, 101, size=count)
+      y      = np.random.randint(-100, 101,  size=count)
+      input  = np.column_stack((x, y))
+      output = np.array([self.get_output(p) for p in input]) 
+      data   = (input, output)
+
+      if print:
+         self.print_data(data)
+         
+      return data
+    
+    
+   def get_output(self, input):
+      x = input[0]
+      y = input[1]
+      r = 1 if y > x else 0
+      return r
+        
+        
+   def print_data(self, data):
+      input, output = data
+
+      for i, o in zip(input, output):
+         print(str(i) + " --> " + str(o))
+
+
+   def verify(self, agent):
+      data   = self.get_data(7)
+      input  = data[0]
+      output = data[1]
+      result = agent.model.predict(input)
+  
+      for i,o,r in zip(input, output, result):
+         print(f"{str(i).ljust(9)} --> {'{:.2f}'.format(r[0])} ({o})")
+
+    
+env   = Env()
+agent = Agent()
+data  = env.get_data(10_000)
+
+agent.train(*data)
+env.verify(agent)
+
