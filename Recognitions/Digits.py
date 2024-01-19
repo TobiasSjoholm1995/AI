@@ -84,7 +84,7 @@ class AI:
          return
       
       train_images, train_labels, test_images, test_labels = DataManager.get_mnist_data()
-      self.model.fit(train_images, train_labels, epochs=20, batch_size=64)
+      self.model.fit(train_images, train_labels, epochs=15, batch_size=64)
       test_loss, test_acc = self.model.evaluate(test_images, test_labels)
 
       print(f'Test Accuracy: {test_acc}')
@@ -132,13 +132,13 @@ class AI:
 
 
 class PaintApp:
-   def __init__(self, root, predict_digit):
+   def __init__(self, predict_digit):
       self.predict_digit = predict_digit
-      self.root = root
+      self.root = tk.Tk()
       self.root.title("Draw Something!")
       self.root.resizable(width=False, height=False)
       
-      self.canvas = tk.Canvas(root, bg="white", width=500, height=400)
+      self.canvas = tk.Canvas(self.root, bg="white", width=500, height=400)
       self.canvas.pack(expand=tk.YES, fill=tk.BOTH)
       
       self.brush_size = 30
@@ -149,6 +149,13 @@ class PaintApp:
       self.canvas.bind("<B1-Motion>", self.paint)
       self.canvas.bind("<ButtonRelease-1>", self.paint_completed)
       self.canvas.bind("<Button-3>", self.clear_canvas)
+
+   
+   def start(self):
+      self.root.attributes('-topmost', True)
+      self.root.update()
+      self.root.attributes('-topmost', False)
+      self.root.mainloop()
 
 
    def paint(self, event):
@@ -183,10 +190,9 @@ class PaintApp:
 def main():
    try:
       ai   = AI()
-      root = tk.Tk()
-      app  = PaintApp(root, ai.predict_image)
+      app  = PaintApp(ai.predict_image)
 
-      root.mainloop()
+      app.start()
    except Exception as err:
       print("An error occurred:", err)
 
