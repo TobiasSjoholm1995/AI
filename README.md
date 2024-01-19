@@ -14,6 +14,12 @@ The repository is organized as follows:
 
 - Regressions: Conducts linear and polynomial regressions through the utilization of neural networks.
 
+
+### Preview
+
+Executing handwriting recognition through an artificial neural network:
+![image](https://github.com/TobiasSjoholm1995/AI/assets/43572826/f2f49c6d-a2c1-4bf6-a8eb-183266082a34)
+
 ### Requirements
 To run the scripts in this repository, ensure that you have the following dependencies installed:
 
