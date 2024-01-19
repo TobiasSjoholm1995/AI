@@ -16,10 +16,10 @@ The repository is organized as follows:
 To run the scripts in this repository, ensure that you have the following dependencies installed:
 
 - Python:  https://www.python.org/downloads/
+- GhostScript:  https://ghostscript.com/releases/gsdnld.html 
 - TensorFlow:  pip install tensorflow 
 - NumPy:  pip install np
 - TKinter:  pip install tk
-- GhostScript:  https://ghostscript.com/releases/gsdnld.html  (restart IDE after)
 - OpenCV:  pip install opencv-python
 - PIL:  pip install pillow
 
