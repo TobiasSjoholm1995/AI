@@ -23,9 +23,8 @@ To run the scripts in this repository, ensure that you have the following depend
 - OpenCV
 - PIL
 
-You can install the required packages using the following command:
-
-Download https://ghostscript.com/releases/gsdnld.html  (restart IDE after)
+Make sure to download https://ghostscript.com/releases/gsdnld.html  (restart IDE after)
+You can install the required Python packages using the following commands:
 - pip install tensorflow
 - pip install pillow
 - pip install opencv-python
