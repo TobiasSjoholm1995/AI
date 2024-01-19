@@ -24,25 +24,8 @@ def build_model():
    return model
 
 
-def plot_data(x, y):
-    plt.scatter(x, y, label='Training Data')
-    plt.xlabel('X')
-    plt.ylabel('y')
-    plt.title('Training Data')
-    plt.legend()
-    plt.show()
-
-
-def print_predictions(x_text, predictions):
-   for i in range(len(x_text)):
-      x = x_text[i][0]
-      y = "{:.2f}".format(get_y_value(x))
-      p = "{:.2f}".format(predictions[i][0])
-      print(f"x: {x}, y: {y}, Prediction: {p}")
-
-
 def plot(x, y, predictions):
-    plt.scatter(x, y, label='Data', color='black')
+    plt.scatter(x, y, label='Correct Data', color='black')
     plt.scatter(x, predictions, label='Predictions', color='green', marker='x')
     plt.xlabel('x')
     plt.ylabel('y')
