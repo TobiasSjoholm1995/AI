@@ -3,6 +3,7 @@
 ### Overview
 This repository contains Python scripts that explore various types of neural network architectures to solve different problems, including classification, regression and recognition. The purpose of these experiments is to evaluate the performance of different neural network models on diverse tasks and gain insights into their strengths and limitations.
 
+
 ### Project Structure
 The repository is organized as follows:
 
@@ -18,7 +19,8 @@ The repository is organized as follows:
 ### Preview
 
 Executing handwriting recognition through an artificial neural network:
-![image](https://github.com/TobiasSjoholm1995/AI/assets/43572826/f2f49c6d-a2c1-4bf6-a8eb-183266082a34)
+![image](https://github.com/TobiasSjoholm1995/AI/assets/43572826/6ad8e476-3760-41ec-8317-61766b3310ef)
+
 
 ### Requirements
 To run the scripts in this repository, ensure that you have the following dependencies installed:
