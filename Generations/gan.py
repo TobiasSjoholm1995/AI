@@ -58,6 +58,7 @@ def build_discriminator():
    model.add(layers.Flatten())
    model.add(layers.Dense(1, activation='sigmoid'))
    model.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(0.0002, 0.5), metrics=['accuracy'])
+   model.trainable = False
    return model
 
 
@@ -82,8 +83,7 @@ def get_nmist_data():
 def train(generator, discriminator, gan, train_images):
    if SKIP_TRAINING: 
       return
-
-   discriminator.trainable = False
+   
    half_batch = int(BATCH_SIZE / 2)
    print(f'Total epoch count: {EPOCHS}\n')
 
