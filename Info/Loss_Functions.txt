@@ -1,8 +1,0 @@
-categorical_crossentropy is meant for multi classification where u have multiple output neurons, each neuron represent its probability 0 to 1.0
-
-sparse_categorical_crossentropy is for multiclassification when u have 1 output neuron, where each integer represent 1 classificaiton value
-
-binary_crossentropy is for binary classification, only needs 1 output neuron.
-
-Mean Squared Erroris for regressions, where the output is a continuous value
-
