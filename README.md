@@ -23,6 +23,10 @@ Handwriting recognition through an artificial neural network:
 ![image](https://github.com/TobiasSjoholm1995/AI/assets/43572826/404906f8-f405-44ce-b03c-e0379122b17b)
 
 
+Synthetic generated image from a Generative Adversarial Network:
+![synthetic](https://github.com/TobiasSjoholm1995/AI/assets/43572826/2d8f4912-dc5e-4a59-8814-9af02ebc284f)
+
+
 ### Requirements
 To run the scripts in this repository, ensure that you have the following dependencies installed:
 
