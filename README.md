@@ -1,13 +1,15 @@
 ## Neural Network Experiments
 
 ### Overview
-This repository contains Python scripts that explore various types of neural network architectures to solve different problems, including classification, regression and recognition. The purpose of these experiments is to evaluate the performance of different neural network models on diverse tasks and gain insights into their strengths and limitations.
+This repository contains Python scripts that explore various types of neural network architectures to solve different problems, including classification, regression, generation and recognition. The purpose of these experiments is to evaluate the performance of different neural network models on diverse tasks and gain insights into their strengths and limitations.
 
 
 ### Project Structure
 The repository is organized as follows:
 
-- Classifications: This directory contains Python scripts that focus on solving classifications problems, such as Binary and Multi-Class classifications. 
+- Classifications: This directory contains Python scripts that focus on solving classifications problems, such as Binary and Multi-Class classifications.
+
+- GAN: The script implements a Generative Adversarial Network (GAN), it defines the generator, the discriminator and the GAN neural network models. The training process involves generating synthetic images and optimizing the models. It also includes functionality to visualize and save the generated images.
 
 - Info: Contains information about activation functions and loss functions that can be used as a lookup when needed in the future.
 
