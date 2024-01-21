@@ -98,24 +98,36 @@ def train(generator, discriminator, gan, train_images):
       g_loss  = gan.train_on_batch(noise, valid_y) 
 
       if epoch % 100 == 0:
-         save_generated_images(generator, epoch)
-
-   save_generated_images(generator, EPOCHS)
+         show_progression(generator, epoch)
 
 
+def show_progression(generator, epoch):
+   name  = f'generated_image_epoch_{epoch}.jpg'
+   image = generate_images(generator, 1)
+   
+   save_image(image, name)
+   print(f'Epoch {epoch} image saved')
 
-def save_generated_images(generator, epoch):
-   count  = 1
+
+def show_result(generator):
+   count = 10
+   image = generate_images(generator, count)
+   
+   for i in range(count):
+      save_image(image, f'generated_image_result_{i+1}.jpg')
+
+
+def generate_images(generator, count):
    noise  = np.random.normal(0, 1, (count, LATENT_DIM))
    images = generator.predict(noise, verbose=0)
    images = images.reshape((count, IMAGE_SIZE, IMAGE_SIZE))
-   
-   for i in range(count):
-      image_path = f"generated_image_epoch_{epoch}.jpg"
-      plt.imshow(images[i], cmap='gray')
-      plt.axis('off')
-      plt.savefig(image_path, format='jpeg', bbox_inches='tight', pad_inches=0)
-      print(f'Epoch {epoch} image saved')
+   return images
+
+
+def save_image(image, filename):
+   plt.imshow(image, cmap='gray')
+   plt.axis('off')
+   plt.savefig(filename, format='jpeg', bbox_inches='tight', pad_inches=0)
 
 
 def save_models(gen, dis, gan):
@@ -131,6 +143,7 @@ def main():
    gan           = build_gan(generator, discriminator)
    
    train(generator, discriminator, gan, data)
+   show_result(generator)
    save_models(generator, discriminator, gan)
 
 
