@@ -24,6 +24,7 @@ Handwriting recognition through an artificial neural network:
 
 
 Synthetic generated image from a Generative Adversarial Network:
+
 ![synthetic](https://github.com/TobiasSjoholm1995/AI/assets/43572826/2d8f4912-dc5e-4a59-8814-9af02ebc284f)
 
 
