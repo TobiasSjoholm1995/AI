@@ -81,7 +81,8 @@ def get_nmist_data():
 
 def train(generator, discriminator, gan, train_images):
    half_batch = int(BATCH_SIZE / 2)
-   
+   print(f'Total epoch count: {EPOCHS}\n')
+
    for epoch in range(EPOCHS): 
       indexes     = np.random.randint(0, train_images.shape[0], half_batch)
       real_images = train_images[indexes]
@@ -94,7 +95,7 @@ def train(generator, discriminator, gan, train_images):
 
       noise   = np.random.normal(0, 1, (BATCH_SIZE, LATENT_DIM))
       valid_y = np.ones((BATCH_SIZE, 1))
-      g_loss  = gan.train_on_batch(noise, valid_y)
+      g_loss  = gan.train_on_batch(noise, valid_y) 
 
       if epoch % 100 == 0:
          print(f"Epoch {epoch}, D Acc: {d_loss[1]}, G Loss: {g_loss}")
