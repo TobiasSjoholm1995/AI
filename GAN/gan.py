@@ -147,8 +147,8 @@ def main():
    gan           = build_gan(generator, discriminator)
    
    train(generator, discriminator, gan, data)
-   show_result(generator)
    save_models(generator, discriminator, gan)
+   show_result(generator)
 
 
 if __name__ == "__main__":
