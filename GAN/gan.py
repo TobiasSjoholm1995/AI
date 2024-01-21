@@ -6,15 +6,15 @@ from tensorflow.keras import layers, models
 from tensorflow.keras.models import load_model
 
 
-IMAGE_SIZE   = 28
-IMAGE_SHAPE  = (IMAGE_SIZE, IMAGE_SIZE, 1)
-LATENT_DIM   = 100
-BATCH_SIZE   = 64
-EPOCHS       = 30_000
-GAN_FILEPATH = 'gan.h5'
-GEN_FILEPATH = 'generator.h5'
-DIS_FILEPATH = 'discriminator.h5'
-
+IMAGE_SIZE    = 28
+IMAGE_SHAPE   = (IMAGE_SIZE, IMAGE_SIZE, 1)
+LATENT_DIM    = 100
+BATCH_SIZE    = 64
+EPOCHS        = 30_000
+GAN_FILEPATH  = 'gan.h5'
+GEN_FILEPATH  = 'generator.h5'
+DIS_FILEPATH  = 'discriminator.h5'
+SKIP_TRAINING = False
 
 def build_generator():
    if os.path.exists(GEN_FILEPATH):
@@ -80,6 +80,9 @@ def get_nmist_data():
 
 
 def train(generator, discriminator, gan, train_images):
+   if SKIP_TRAINING: 
+      return
+   
    half_batch = int(BATCH_SIZE / 2)
    print(f'Total epoch count: {EPOCHS}\n')
 
