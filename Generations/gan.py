@@ -10,7 +10,7 @@ IMAGE_SIZE    = 28
 IMAGE_SHAPE   = (IMAGE_SIZE, IMAGE_SIZE, 1)
 INPUT_DIM     = 100
 BATCH_SIZE    = 64
-EPOCHS        = 30_000
+EPOCHS        = 5_000
 GAN_FILEPATH  = 'gan.h5'
 GEN_FILEPATH  = 'generator.h5'
 DIS_FILEPATH  = 'discriminator.h5'
@@ -110,7 +110,7 @@ def show_progression(generator, epoch):
    image = generate_images(generator, 1)[0]
    
    save_image(image, name)
-   print(f'Epoch {epoch} image saved')
+   print(f'Saved {name}')
 
 
 def show_result(generator):
