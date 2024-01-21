@@ -7,13 +7,13 @@ This repository contains Python scripts that explore various types of neural net
 ### Project Structure
 The repository is organized as follows:
 
-- Classifications: This directory contains Python scripts that focus on solving classifications problems, such as Binary and Multi-Class classifications.
+- __Classifications__: This directory contains Python scripts that focus on solving classifications problems, such as Binary and Multi-Class classifications.
 
-- Generations: Entails the implementation of a Generative Adversarial Network (GAN), encompassing the definition of the generator, discriminator, and GAN neural network models. The training process revolves around generating synthetic images and fine-tuning the weights of the neural network models. Additionally, the project incorporates features for visualizing and saving the synthetic generated images.
+- __Generations__: Entails the implementation of a Generative Adversarial Network (GAN), encompassing the definition of the generator, discriminator, and GAN neural network models. The training process revolves around generating synthetic images and fine-tuning the weights of the neural network models. Additionally, the project incorporates features for visualizing and saving the synthetic generated images.
 
-- Recognitions: Delves into the realm of neural network models designed for the identification of handwritten characters. Leveraging the NMIST dataset for training data. The script employs the TKinter library to create a graphical user interface (GUI). This interface enables users to draw digits and the neural network tries to predict the digit. The GUI not only displays the prediction but also conveys the confidence associated with the model's recognition.
+- **Recognitions**: Delves into the realm of neural network models designed for the identification of handwritten characters. Leveraging the NMIST dataset for training data. The script employs the TKinter library to create a graphical user interface (GUI). This interface enables users to draw digits and the neural network tries to predict the digit. The GUI not only displays the prediction but also conveys the confidence associated with the model's recognition.
 
-- Regressions: Conducts linear and polynomial regressions through the utilization of neural networks.
+- **Regressions**: Conducts linear and polynomial regressions through the utilization of neural networks.
 
 
 ### Screenshot Preview
