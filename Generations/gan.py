@@ -62,7 +62,6 @@ def build_discriminator():
 
 
 def build_gan(generator, discriminator):
-   discriminator.trainable = False
    if os.path.exists(GAN_FILEPATH):
       return load_model(GAN_FILEPATH)
 
@@ -83,7 +82,8 @@ def get_nmist_data():
 def train(generator, discriminator, gan, train_images):
    if SKIP_TRAINING: 
       return
-   
+
+   discriminator.trainable = False
    half_batch = int(BATCH_SIZE / 2)
    print(f'Total epoch count: {EPOCHS}\n')
 
