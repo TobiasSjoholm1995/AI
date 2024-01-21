@@ -9,7 +9,7 @@ The repository is organized as follows:
 
 - Classifications: This directory contains Python scripts that focus on solving classifications problems, such as Binary and Multi-Class classifications.
 
-- Generations: Implementation of a Generative Adversarial Network (GAN), it defines the generator, the discriminator and the GAN neural network models. The training process involves generating synthetic images and optimizing the weight of the neural network models. It also includes functionality to visualize and save the generated images.
+- Generations: Implementation of a Generative Adversarial Network (GAN), it defines the generator, the discriminator and the GAN neural network models. The training process involves generating synthetic images and optimizing the weights of the neural network models. It also includes functionality to visualize and save the generated images.
 
 - Info: Contains information about activation functions and loss functions that can be used as a lookup when needed in the future.
 
