@@ -114,7 +114,7 @@ def save_generated_images(generator, epoch):
       image_path = f"generated_image_epoch_{epoch}.jpg"
       plt.imshow(images[i], cmap='gray')
       plt.axis('off')
-      plt.savefig(image_path, format='jpeg')
+      plt.savefig(image_path, format='jpeg', bbox_inches='tight', pad_inches=0)
       print(f'Epoch {epoch} image saved')
 
 
