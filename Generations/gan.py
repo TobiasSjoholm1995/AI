@@ -11,10 +11,10 @@ IMAGE_SHAPE   = (IMAGE_SIZE, IMAGE_SIZE, 1)
 INPUT_DIM     = 100
 BATCH_SIZE    = 64
 EPOCHS        = 30_000
+SKIP_TRAINING = False
 GAN_FILEPATH  = 'model_gan.h5'
 GEN_FILEPATH  = 'model_generator.h5'
 DIS_FILEPATH  = 'model_discriminator.h5'
-SKIP_TRAINING = False
 
 
 def build_generator():
