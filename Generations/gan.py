@@ -98,12 +98,15 @@ def train(generator, discriminator, gan, train_images):
       y           = np.vstack((real_labels, gen_labels))
       _, d_acc    = discriminator.train_on_batch(x, y)  
 
-      noise   = np.random.normal(0, 1, (BATCH_SIZE, INPUT_DIM))
-      valid_y = np.ones((BATCH_SIZE, 1))
-      g_loss  = gan.train_on_batch(noise, valid_y) 
+      noise       = np.random.normal(0, 1, (BATCH_SIZE, INPUT_DIM))
+      valid_y     = np.ones((BATCH_SIZE, 1))
+      g_loss      = gan.train_on_batch(noise, valid_y) 
 
       if epoch % 100 == 0:
          show_progression(generator, epoch)
+
+      if epoch % 1000 == 0:
+         save_models(generator, discriminator, gan)
 
 
 def show_progression(generator, epoch):
