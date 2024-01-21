@@ -58,7 +58,6 @@ def build_discriminator():
    model.add(layers.Flatten())
    model.add(layers.Dense(1, activation='sigmoid'))
    model.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(0.0002, 0.5), metrics=['accuracy'])
-   model.trainable = False
    return model
 
 
@@ -66,6 +65,7 @@ def build_gan(generator, discriminator):
    if os.path.exists(GAN_FILEPATH):
       return load_model(GAN_FILEPATH)
 
+   discriminator.trainable = False
    model = models.Sequential()
    model.add(generator)
    model.add(discriminator)
