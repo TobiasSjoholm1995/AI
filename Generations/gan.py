@@ -10,7 +10,7 @@ IMAGE_SIZE    = 28
 IMAGE_SHAPE   = (IMAGE_SIZE, IMAGE_SIZE, 1)
 INPUT_DIM     = 100
 BATCH_SIZE    = 64
-EPOCHS        = 5_000
+EPOCHS        = 30_000
 GAN_FILEPATH  = 'model_gan.h5'
 GEN_FILEPATH  = 'model_generator.h5'
 DIS_FILEPATH  = 'model_discriminator.h5'
@@ -43,7 +43,7 @@ def build_discriminator():
       return load_model(DIS_FILEPATH)
 
    model = models.Sequential()
-   model.add(layers.Conv2D(32, kernel_size=3, strides=2, input_shape=IMAGE_SHAPE, padding='same'))
+   model.add(layers.Conv2D(64, kernel_size=3, strides=2, input_shape=IMAGE_SHAPE, padding='same'))
    model.add(layers.LeakyReLU(alpha=0.2))
    model.add(layers.Dropout(0.25))
    model.add(layers.Conv2D(64, kernel_size=3, strides=2, padding='same'))
@@ -89,13 +89,14 @@ def train(generator, discriminator, gan, train_images):
 
    for epoch in range(EPOCHS): 
       indexes     = np.random.randint(0, train_images.shape[0], half_batch)
-      real_images = train_images[indexes]
       noise       = np.random.normal(0, 1, (half_batch, INPUT_DIM))
+      real_images = train_images[indexes]
       gen_images  = generator.predict(noise, verbose=0)
-
-      d_loss_real = discriminator.train_on_batch(real_images, np.ones((half_batch, 1)))
-      d_loss_fake = discriminator.train_on_batch(gen_images,  np.zeros((half_batch, 1)))
-      d_loss      = 0.5 * np.add(d_loss_real, d_loss_fake)
+      real_labels = np.ones((half_batch, 1))
+      gen_labels  = np.zeros((half_batch, 1))
+      x           = np.vstack((real_images, gen_images))
+      y           = np.vstack((real_labels, gen_labels))
+      _, d_acc    = discriminator.train_on_batch(x, y)  
 
       noise   = np.random.normal(0, 1, (BATCH_SIZE, INPUT_DIM))
       valid_y = np.ones((BATCH_SIZE, 1))
