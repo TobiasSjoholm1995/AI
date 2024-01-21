@@ -107,7 +107,7 @@ def train(generator, discriminator, gan, train_images):
 
 def show_progression(generator, epoch):
    name  = f'generated_image_epoch_{epoch}.jpg'
-   image = generate_images(generator, 1)
+   image = generate_images(generator, 1)[0]
    
    save_image(image, name)
    print(f'Epoch {epoch} image saved')
