@@ -114,11 +114,11 @@ def show_progression(generator, epoch):
 
 
 def show_result(generator):
-   count = 10
-   image = generate_images(generator, count)
+   count  = 10
+   images = generate_images(generator, count)
    
    for i in range(count):
-      save_image(image, f'generated_image_result_{i+1}.jpg')
+      save_image(images[i], f'generated_image_result_{i+1}.jpg')
 
 
 def generate_images(generator, count):
