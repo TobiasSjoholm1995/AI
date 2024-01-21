@@ -62,10 +62,10 @@ def build_discriminator():
 
 
 def build_gan(generator, discriminator):
+   discriminator.trainable = False
    if os.path.exists(GAN_FILEPATH):
       return load_model(GAN_FILEPATH)
 
-   discriminator.trainable = False
    model = models.Sequential()
    model.add(generator)
    model.add(discriminator)
