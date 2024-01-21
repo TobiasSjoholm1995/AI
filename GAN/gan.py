@@ -83,13 +83,13 @@ def train(generator, discriminator, gan, train_images):
    half_batch = int(BATCH_SIZE / 2)
    
    for epoch in range(EPOCHS): 
-      indexes    = np.random.randint(0, train_images.shape[0], half_batch)
-      images     = train_images[indexes]
-      noise      = np.random.normal(0, 1, (half_batch, LATENT_DIM))
-      gen_images = generator.predict(noise, verbose=0)
+      indexes     = np.random.randint(0, train_images.shape[0], half_batch)
+      real_images = train_images[indexes]
+      noise       = np.random.normal(0, 1, (half_batch, LATENT_DIM))
+      gen_images  = generator.predict(noise, verbose=0)
 
-      d_loss_real = discriminator.train_on_batch(images, np.ones((half_batch, 1)))
-      d_loss_fake = discriminator.train_on_batch(gen_images, np.zeros((half_batch, 1)))
+      d_loss_real = discriminator.train_on_batch(real_images, np.ones((half_batch, 1)))
+      d_loss_fake = discriminator.train_on_batch(gen_images,  np.zeros((half_batch, 1)))
       d_loss      = 0.5 * np.add(d_loss_real, d_loss_fake)
 
       noise   = np.random.normal(0, 1, (BATCH_SIZE, LATENT_DIM))
