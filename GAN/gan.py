@@ -98,7 +98,6 @@ def train(generator, discriminator, gan, train_images):
       g_loss  = gan.train_on_batch(noise, valid_y) 
 
       if epoch % 100 == 0:
-         print(f"Epoch {epoch}, D Acc: {d_loss[1]}, G Loss: {g_loss}")
          save_generated_images(generator, epoch)
 
    save_generated_images(generator, EPOCHS)
@@ -116,6 +115,7 @@ def save_generated_images(generator, epoch):
       plt.imshow(images[i], cmap='gray')
       plt.axis('off')
       plt.savefig(image_path, format='jpeg')
+      print(f'Epoch {epoch} image saved')
 
 
 def save_models(gen, dis, gan):
