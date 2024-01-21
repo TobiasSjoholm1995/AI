@@ -8,7 +8,7 @@ from tensorflow.keras.models import load_model
 
 IMAGE_SIZE    = 28
 IMAGE_SHAPE   = (IMAGE_SIZE, IMAGE_SIZE, 1)
-LATENT_DIM    = 100
+INPUT_DIM     = 100
 BATCH_SIZE    = 64
 EPOCHS        = 30_000
 GAN_FILEPATH  = 'gan.h5'
@@ -22,7 +22,7 @@ def build_generator():
       return load_model(GEN_FILEPATH)
    
    model = models.Sequential()
-   model.add(layers.Dense(7 * 7 * 128, input_dim=LATENT_DIM))
+   model.add(layers.Dense(7 * 7 * 128, input_dim=INPUT_DIM))
    model.add(layers.Reshape((7, 7, 128)))
    model.add(layers.UpSampling2D())
    model.add(layers.Conv2D(128, kernel_size=3, padding='same'))
@@ -90,14 +90,14 @@ def train(generator, discriminator, gan, train_images):
    for epoch in range(EPOCHS): 
       indexes     = np.random.randint(0, train_images.shape[0], half_batch)
       real_images = train_images[indexes]
-      noise       = np.random.normal(0, 1, (half_batch, LATENT_DIM))
+      noise       = np.random.normal(0, 1, (half_batch, INPUT_DIM))
       gen_images  = generator.predict(noise, verbose=0)
 
       d_loss_real = discriminator.train_on_batch(real_images, np.ones((half_batch, 1)))
       d_loss_fake = discriminator.train_on_batch(gen_images,  np.zeros((half_batch, 1)))
       d_loss      = 0.5 * np.add(d_loss_real, d_loss_fake)
 
-      noise   = np.random.normal(0, 1, (BATCH_SIZE, LATENT_DIM))
+      noise   = np.random.normal(0, 1, (BATCH_SIZE, INPUT_DIM))
       valid_y = np.ones((BATCH_SIZE, 1))
       g_loss  = gan.train_on_batch(noise, valid_y) 
 
@@ -122,7 +122,7 @@ def show_result(generator):
 
 
 def generate_images(generator, count):
-   noise  = np.random.normal(0, 1, (count, LATENT_DIM))
+   noise  = np.random.normal(0, 1, (count, INPUT_DIM))
    images = generator.predict(noise, verbose=0)
    images = images.reshape((count, IMAGE_SIZE, IMAGE_SIZE))
    return images
