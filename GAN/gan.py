@@ -16,6 +16,7 @@ GEN_FILEPATH  = 'generator.h5'
 DIS_FILEPATH  = 'discriminator.h5'
 SKIP_TRAINING = False
 
+
 def build_generator():
    if os.path.exists(GEN_FILEPATH):
       return load_model(GEN_FILEPATH)
