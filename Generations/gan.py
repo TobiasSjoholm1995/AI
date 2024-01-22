@@ -136,7 +136,7 @@ def save_images(images, filenames):
       plt.imshow(images[i], cmap='gray')
       plt.axis('off')
       plt.savefig(filename, format='jpeg', bbox_inches='tight', pad_inches=0)
-      print(f'Saved {filename}')
+      print(f'{filename}')
 
 
 def save_models(gen, dis, gan, epoch):
