@@ -126,7 +126,7 @@ def show_progression(generator, discriminator, real_images, epoch, count = 1):
    indexes     = np.random.randint(0, real_images.shape, count)
    real_images = real_images[indexes]
    real_scores = discriminator.predict(real_images, verbose=0)[0]
-   real_names = [f'Real_Epoch_{epoch}_Score_{(int(round(100 * s)))}.jpg' for s in real_scores] 
+   real_names  = [f'Real_Epoch_{epoch}_Score_{(int(round(100 * s)))}.jpg' for s in real_scores] 
 
    save_images(real_images, real_names)
    save_images(gen_images, gen_names)
