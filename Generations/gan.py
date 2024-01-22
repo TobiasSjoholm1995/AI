@@ -12,9 +12,11 @@ INPUT_DIM     = 100
 BATCH_SIZE    = 64
 EPOCHS        = 30_000
 SKIP_TRAINING = False
-GAN_FILEPATH  = 'model_gan.h5'
-GEN_FILEPATH  = 'model_generator.h5'
-DIS_FILEPATH  = 'model_discriminator.h5'
+GAN_FILEPATH  = 'gan.h5'
+GEN_FILEPATH  = 'generator.h5'
+DIS_FILEPATH  = 'discriminator.h5'
+IMAGE_FOLDER  = 'Images'
+MODEL_FOLDER  = 'Models'
 
 
 def build_generator():
@@ -103,45 +105,48 @@ def train(generator, discriminator, gan, train_images):
       g_loss      = gan.train_on_batch(noise, valid_y) 
 
       if epoch % 100 == 0:
-         show_progression(generator, epoch)
+         show_progression(generator, discriminator, epoch)
 
       if epoch % 1000 == 0:
-         save_models(generator, discriminator, gan)
+         save_models(generator, discriminator, gan, epoch)
 
 
-def show_progression(generator, epoch):
-   name  = f'generated_image_epoch_{epoch}.jpg'
-   image = generate_images(generator, 1)[0]
-   
-   save_image(image, name)
-   print(f'Saved {name}')
+def show_progression(generator, discriminator, epoch, count = 1):
+   images, scores = generate_images(generator, discriminator, 1)
+   names = [f'Epoch_{epoch}_Score_{(int(round(100 * s)))}.jpg' for s in scores]
+
+   save_images(images, names)
 
 
-def show_result(generator):
-   count  = 10
-   images = generate_images(generator, count)
-   
-   for i in range(count):
-      save_image(images[i], f'generated_image_result_{i+1}.jpg')
-
-
-def generate_images(generator, count):
+def generate_images(generator, discriminator, count):
    noise  = np.random.normal(0, 1, (count, INPUT_DIM))
    images = generator.predict(noise, verbose=0)
-   images = images.reshape((count, IMAGE_SIZE, IMAGE_SIZE))
-   return images
+   scores = discriminator.predict(images, verbose=0)[0]
+   images = images.reshape((1, IMAGE_SIZE, IMAGE_SIZE))
+
+   return images, scores
 
 
-def save_image(image, filename):
-   plt.imshow(image, cmap='gray')
-   plt.axis('off')
-   plt.savefig(filename, format='jpeg', bbox_inches='tight', pad_inches=0)
+def save_images(images, filenames):
+   if not os.path.exists(IMAGE_FOLDER):
+      os.makedirs(IMAGE_FOLDER)
+   
+   for i in range(len(images)):
+      filename = os.path.join(IMAGE_FOLDER, filenames[i])
+      plt.imshow(images[i], cmap='gray')
+      plt.axis('off')
+      plt.savefig(filename, format='jpeg', bbox_inches='tight', pad_inches=0)
+      print(f'Saved {filename}')
 
 
-def save_models(gen, dis, gan):
-   gen.save(GEN_FILEPATH)
-   dis.save(DIS_FILEPATH)
-   gan.save(GAN_FILEPATH)
+def save_models(gen, dis, gan, epoch):
+   if not os.path.exists(MODEL_FOLDER):
+      os.makedirs(MODEL_FOLDER)
+
+   prefix = "Epoch_" + str(epoch) +  '_'
+   gen.save(os.path.join(MODEL_FOLDER, prefix + GEN_FILEPATH))
+   dis.save(os.path.join(MODEL_FOLDER, prefix + DIS_FILEPATH))
+   gan.save(os.path.join(MODEL_FOLDER, prefix + GAN_FILEPATH))
 
 
 def main():
@@ -151,8 +156,8 @@ def main():
    gan           = build_gan(generator, discriminator)
    
    train(generator, discriminator, gan, data)
-   save_models(generator, discriminator, gan)
-   show_result(generator)
+   save_models(generator, discriminator, gan, EPOCHS)
+   show_progression(generator, discriminator, EPOCHS)
 
 
 if __name__ == "__main__":
