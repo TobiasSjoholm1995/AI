@@ -28,7 +28,6 @@ Handwriting recognition through an artificial neural network:
 ![digits_git](https://github.com/TobiasSjoholm1995/AI/assets/43572826/68f2d492-6bee-43ea-8193-a188cc29c4d5)
 
 Can you figure out which ones that are real and which are AI generated?
-![synthetic](https://github.com/TobiasSjoholm1995/AI/assets/43572826/2d8f4912-dc5e-4a59-8814-9af02ebc284f)
 
 
 ### Requirements
