@@ -112,7 +112,7 @@ def train(generator, discriminator, gan, train_images):
          valid_y     = np.ones((BATCH_SIZE, 1))
          g_loss      = gan.train_on_batch(noise, valid_y) 
 
-      if epoch % 25 == 0:
+      if epoch % 100 == 0:
          show_progression(generator, discriminator, real_images, epoch)
 
       if epoch % 1000 == 0:
@@ -128,8 +128,8 @@ def show_progression(generator, discriminator, real_images, epoch, count = 1):
    real_scores = discriminator.predict(real_images, verbose=0)[0]
    real_names = [f'Epoch_{epoch}_Real_Score_{(int(round(100 * s)))}.jpg' for s in real_scores] 
 
-   save_images(gen_images, gen_names)
    save_images(real_images, real_names)
+   save_images(gen_images, gen_names)
 
 
 def generate_images(generator, discriminator, count):
