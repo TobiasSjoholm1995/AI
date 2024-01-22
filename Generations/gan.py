@@ -120,7 +120,7 @@ def train(generator, discriminator, gan, train_images):
 
 
 def show_progression(generator, discriminator, real_images, epoch, count = 1):
-   gen_images, gen_scores = generate_images(generator, discriminator, 1)
+   gen_images, gen_scores = generate_images(generator, discriminator, count)
    gen_names = [f'Gen_Epoch_{epoch}_Score_{(int(round(100 * s)))}.jpg' for s in gen_scores]
    
    indexes     = np.random.randint(0, real_images.shape, count)
