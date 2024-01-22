@@ -6,12 +6,18 @@ from tensorflow.keras import layers, models
 from tensorflow.keras.models import load_model
 
 
-IMAGE_SIZE    = 28
-IMAGE_SHAPE   = (IMAGE_SIZE, IMAGE_SIZE, 1)
-INPUT_DIM     = 100
-BATCH_SIZE    = 64
-EPOCHS        = 30_000
-SKIP_TRAINING = False
+# Training Settings:
+IMAGE_SIZE      = 28
+IMAGE_SHAPE     = (IMAGE_SIZE, IMAGE_SIZE, 1)
+INPUT_DIM       = 100
+BATCH_SIZE      = 64
+EPOCHS          = 30_000
+SKIP_TRAINING   = False
+DIS_OVERFITTING = 0.95
+DIS_EPOCH_STOP  = 20_000
+GAN_EPOCH_START = 300
+
+# Output Settings:
 GAN_FILEPATH  = 'gan.h5'
 GEN_FILEPATH  = 'generator.h5'
 DIS_FILEPATH  = 'discriminator.h5'
@@ -36,7 +42,7 @@ def build_generator():
    model.add(layers.LeakyReLU(alpha=0.2))
    model.add(layers.Conv2D(1, kernel_size=3, padding='same'))
    model.add(layers.Activation('sigmoid'))
-   model.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(0.0002, 0.5))
+   model.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(0.0001, 0.5))
    return model
 
 
@@ -89,33 +95,41 @@ def train(generator, discriminator, gan, train_images):
    half_batch = int(BATCH_SIZE / 2)
    print(f'Total epoch count: {EPOCHS}\n')
 
-   for epoch in range(EPOCHS): 
-      indexes     = np.random.randint(0, train_images.shape[0], half_batch)
-      noise       = np.random.normal(0, 1, (half_batch, INPUT_DIM))
-      real_images = train_images[indexes]
-      gen_images  = generator.predict(noise, verbose=0)
-      real_labels = np.ones((half_batch, 1))
-      gen_labels  = np.zeros((half_batch, 1))
-      x           = np.vstack((real_images, gen_images))
-      y           = np.vstack((real_labels, gen_labels))
-      _, d_acc    = discriminator.train_on_batch(x, y)  
+   for epoch in range(EPOCHS):
+      if epoch < DIS_EPOCH_STOP:
+         indexes     = np.random.randint(0, train_images.shape[0], half_batch)
+         noise       = np.random.normal(0, 1, (half_batch, INPUT_DIM))
+         real_images = train_images[indexes]
+         gen_images  = generator.predict(noise, verbose=0)
+         real_labels = np.ones((half_batch, 1)) * DIS_OVERFITTING
+         gen_labels  = np.zeros((half_batch, 1))
+         x           = np.vstack((real_images, gen_images))
+         y           = np.vstack((real_labels, gen_labels))
+         _, d_acc    = discriminator.train_on_batch(x, y)  
 
-      noise       = np.random.normal(0, 1, (BATCH_SIZE, INPUT_DIM))
-      valid_y     = np.ones((BATCH_SIZE, 1))
-      g_loss      = gan.train_on_batch(noise, valid_y) 
+      if epoch > GAN_EPOCH_START:
+         noise       = np.random.normal(0, 1, (BATCH_SIZE, INPUT_DIM))
+         valid_y     = np.ones((BATCH_SIZE, 1))
+         g_loss      = gan.train_on_batch(noise, valid_y) 
 
-      if epoch % 100 == 0:
-         show_progression(generator, discriminator, epoch)
+      if epoch % 25 == 0:
+         show_progression(generator, discriminator, real_images, epoch)
 
       if epoch % 1000 == 0:
          save_models(generator, discriminator, gan, epoch)
 
 
-def show_progression(generator, discriminator, epoch, count = 1):
-   images, scores = generate_images(generator, discriminator, 1)
-   names = [f'Epoch_{epoch}_Score_{(int(round(100 * s)))}.jpg' for s in scores]
+def show_progression(generator, discriminator, real_images, epoch, count = 1):
+   gen_images, gen_scores = generate_images(generator, discriminator, 1)
+   gen_names = [f'Epoch_{epoch}_Gen_Score_{(int(round(100 * s)))}.jpg' for s in gen_scores]
+   
+   indexes     = np.random.randint(0, real_images.shape, count)
+   real_images = real_images[indexes]
+   real_scores = discriminator.predict(real_images, verbose=0)[0]
+   real_names = [f'Epoch_{epoch}_Real_Score_{(int(round(100 * s)))}.jpg' for s in real_scores] 
 
-   save_images(images, names)
+   save_images(gen_images, gen_names)
+   save_images(real_images, real_names)
 
 
 def generate_images(generator, discriminator, count):
