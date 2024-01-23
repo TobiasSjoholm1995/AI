@@ -23,9 +23,10 @@ class Network:
 
    def __init__(self):
       self.save_folder  = "Models"
-      self.gen_filename = 'generator.h5'
-      self.dis_filename = 'discriminator.h5'
-      self.gan_filename = 'gan.h5'
+      self.name_prefix  = "matrix"
+      self.gen_filename = self.name_prefix + "_" + 'generator.h5'
+      self.dis_filename = self.name_prefix + "_" + 'discriminator.h5'
+      self.gan_filename = self.name_prefix + "_" + 'gan.h5'
 
       self.gen = self.build_generator()
       self.dis = self.build_discriminator()
