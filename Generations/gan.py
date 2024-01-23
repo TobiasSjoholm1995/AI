@@ -65,7 +65,7 @@ def build_discriminator():
    model.add(layers.Dropout(0.25))
    model.add(layers.Flatten())
    model.add(layers.Dense(1, activation='sigmoid'))
-   model.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(0.0002, 0.5), metrics=['accuracy'])
+   model.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(0.0004, 0.5), metrics=['accuracy'])
    return model
 
 
