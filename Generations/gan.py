@@ -171,7 +171,7 @@ def main():
    
    train(generator, discriminator, gan, data)
    save_models(generator, discriminator, gan, EPOCHS)
-   show_progression(generator, discriminator, EPOCHS)
+   show_progression(generator, discriminator, data, EPOCHS)
 
 
 if __name__ == "__main__":
