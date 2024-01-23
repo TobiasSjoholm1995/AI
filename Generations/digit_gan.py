@@ -18,9 +18,9 @@ DIS_EPOCH_STOP  = 29_900
 GAN_EPOCH_START = 300
 
 # Output Settings:
-GAN_FILEPATH  = 'gan.h5'
-GEN_FILEPATH  = 'generator.h5'
-DIS_FILEPATH  = 'discriminator.h5'
+GAN_FILEPATH  = 'digit_gan.h5'
+GEN_FILEPATH  = 'digit_generator.h5'
+DIS_FILEPATH  = 'digit_discriminator.h5'
 IMAGE_FOLDER  = 'Images'
 MODEL_FOLDER  = 'Models'
 
