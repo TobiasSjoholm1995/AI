@@ -47,7 +47,7 @@ class Network:
 
    def build_generator(self):
       if os.path.exists(self.gen_filename):
-         return load_model(self.gan_filename)
+         return load_model(self.gen_filename)
 
       model = models.Sequential()
       model = models.Sequential()
