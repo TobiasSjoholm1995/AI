@@ -24,7 +24,7 @@ Mean Squared Erroris for regressions, where the output is a continuous value
 
 
 -- GAN --
-GAN is a sequantial network consisting of 2 neural networks, the generator and the discriminator.
+GAN is a sequential network consisting of 2 neural networks, the generator and the discriminator.
 The generator start by generating random data, then ask the discriminator for feedback.
 The discriminator is just a binary classifier that outputs a float between 0(bad) and 1(good). 
 Then the generator use that feeback with gradient descent to slowly improve.
