@@ -22,7 +22,7 @@ GAN_EPOCH_START = 300
 class Network:
 
    def __init__(self):
-      self.save_folder  = "Models"
+      self.save_folder  = "Matrix_Models"
       self.name_prefix  = "matrix"
       self.gen_filename = self.name_prefix + "_" + 'generator.h5'
       self.dis_filename = self.name_prefix + "_" + 'discriminator.h5'
