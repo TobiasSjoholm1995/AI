@@ -21,8 +21,8 @@ GAN_EPOCH_START = 300
 GAN_FILEPATH  = 'digit_gan.h5'
 GEN_FILEPATH  = 'digit_generator.h5'
 DIS_FILEPATH  = 'digit_discriminator.h5'
-IMAGE_FOLDER  = 'Digit_Images'
-MODEL_FOLDER  = 'Digit_Models'
+IMAGE_FOLDER  = 'Images'
+MODEL_FOLDER  = 'Models'
 
 
 def build_generator():
