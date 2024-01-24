@@ -55,7 +55,7 @@ class Network:
       model.add(layers.Dense(128, activation='relu'))
       model.add(layers.Dense(DATA_SIZE_DIM_1 * DATA_SIZE_DIM_2, activation='sigmoid'))  
       model.add(layers.Reshape(DATA_SHAPE))
-      model.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(0.0001, 0.5))
+      model.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(0.0002, 0.5))
       return model
 
 
@@ -68,7 +68,7 @@ class Network:
       model.add(layers.Dense(128, activation='relu'))
       model.add(layers.Dense(64, activation='relu'))
       model.add(layers.Dense(1, activation='sigmoid'))
-      model.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(0.0010, 0.5), metrics=['accuracy'])
+      model.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(0.006, 0.5), metrics=['accuracy'])
       return model
 
 
