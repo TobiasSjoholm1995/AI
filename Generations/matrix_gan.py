@@ -15,14 +15,14 @@ BATCH_SIZE      = 64
 EPOCHS          = 10_000
 DIS_OVERFITTING = 0.95
 GEN_PROGRESSION = 0.5
-DIS_EPOCH_STOP  = 9_000
+DIS_EPOCH_STOP  = 9_500
 GAN_EPOCH_START = 300
 
 
 class Network:
 
    def __init__(self):
-      self.save_folder  = "Matrix_Models"
+      self.save_folder  = "Models"
       self.name_prefix  = "matrix"
       self.gen_filename = self.name_prefix + "_" + 'generator.h5'
       self.dis_filename = self.name_prefix + "_" + 'discriminator.h5'
@@ -126,28 +126,28 @@ class DataManager:
       return data, scores
 
 
-class Present:
+class Display:
 
    @staticmethod
    def progression(network, epoch, count = 1):
       gen_data, gen_scores = DataManager.generate_data(network, count)
       gen_titles = [f'Gen_Epoch_{epoch}_Score_{s}:' for s in gen_scores]
-      
-      real_data   = DataManager.get_training_data(count).reshape((count,) + DATA_SHAPE)
-      dis_data    = network.dis.predict(real_data, verbose=0)[0]
-      avg_score   = int(round(sum(100 * dis_data) / len(dis_data)))
-      real_title  = f'Real_Epoch_{epoch}_Score_{avg_score}:' 
+
+      real_data  = DataManager.get_training_data(count).reshape((count,) + DATA_SHAPE)
+      dis_data   = network.dis.predict(real_data, verbose=0)[0]
+      avg_score  = int(round(sum(100 * dis_data) / len(dis_data)))
+      real_title = f'Real_Epoch_{epoch}_Score_{avg_score}:' 
 
       print(real_title)
-      Present.data(gen_data, gen_titles)
+      Display.data(gen_data, gen_titles)
 
 
    @staticmethod
    def result(network, count = 1):
       gen_data, gen_scores = DataManager.generate_data(network, count)
       gen_names = [f'Gen_Result_{i}_Score_{s}:' for i, s in enumerate(gen_scores)]
-
-      Present.data(gen_data, gen_names)
+      Display.data(gen_data, gen_names)
+ 
 
 
    @staticmethod
@@ -175,14 +175,14 @@ class Train:
       gen_labels  = np.zeros((half_batch, 1)) * (GEN_PROGRESSION * epoch / EPOCHS)
       x           = np.vstack((real_data, gen_data))
       y           = np.vstack((real_labels, gen_labels))
-      _, d_acc    = network.dis.train_on_batch(x, y)  
+      network.dis.train_on_batch(x, y)  
 
 
    @staticmethod
    def gan(network):
       noise   = np.random.normal(0, 1, (BATCH_SIZE, INPUT_DIM))
       valid_y = np.ones((BATCH_SIZE, 1))
-      g_loss  = network.gan.train_on_batch(noise, valid_y) 
+      network.gan.train_on_batch(noise, valid_y) 
 
 
    @staticmethod
@@ -200,7 +200,7 @@ class Train:
             Train.gan(network)
 
          if epoch % 100 == 0:
-            Present.progression(network, epoch)
+            Display.progression(network, epoch)
 
          if epoch % 1000 == 0:
             network.save(epoch)
@@ -211,7 +211,7 @@ def main():
    
    Train.network(network)
    network.save(EPOCHS)
-   Present.result(network, 10)
+   Display.result(network, 10)
 
 
 if __name__ == "__main__":
