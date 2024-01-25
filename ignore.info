@@ -42,6 +42,7 @@ The discriminator is just a binary classifier that outputs a float between 0(bad
 Then the generator use that feeback with gradient descent to slowly improve.
 The discriminator needs real image to train and improve but the generator will learn with the help of the discriminator.
 
+
 -- Gradient --
 in order to calculate the gradient of a parameter/weight, u just take the partial derivitive of the error functions.
 
