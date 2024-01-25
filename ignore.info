@@ -1,4 +1,4 @@
--- ACTIVATION FUNCTIONs --
+-- ACTIVATION FUNCTIONS --
 The activation function makes it possible for the neural network to predict none-linear relationships in the data.
 An activation function on hidden layer need to be none linear, to make the output have a none linear boundary. 
 but we dont wanna squeeze the data too much (vanishing gradient problem) in the hidden layers
@@ -14,7 +14,6 @@ softmax is good for multi classification
 Regression we often dont want any activation function on the output layer (linear function)
 
 
-
 -- LOSS FUNCTIONS --
 A loss function is a function that takes 2 inputs, the expected y_value and the predicted y_value (output of the network).
 It will then simply calculate the loss/error of the predicted y_value.
@@ -28,14 +27,12 @@ binary_crossentropy is for binary classification, only needs 1 output neuron.
 Mean Squared Erroris for regressions, where the output is a continuous value.
 
 
-
 -- Optimizer --
 A class that updates the parameters/weights of the network.
 It has a function called update that takes a list of parameters and the graident (list of values).
 The update function iterate over (python zip) lists, and update the parameters in the opposite direction of gradient.
 Adam is a common optmizier that uses momentum to avoid getting stuck at flukautions.
 Often the optimizer finds the (major)local minimum. 
-
 
 
 -- GAN --
