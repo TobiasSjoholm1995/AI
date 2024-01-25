@@ -42,3 +42,27 @@ The discriminator is just a binary classifier that outputs a float between 0(bad
 Then the generator use that feeback with gradient descent to slowly improve.
 The discriminator needs real image to train and improve but the generator will learn with the help of the discriminator.
 
+-- Gradient --
+in order to calculate the gradient of a parameter/weight, u just take the partial derivitive of the error functions.
+
+P  = predicted value (output)
+A  = Actual value (the correct value)
+LR = Learning Rate (hyper parameter)
+E  = Error function, in this case mean square error
+E  = 0.5(P - A)^2 
+
+Calculate the gradient of weight1, Gw1 
+Take the derivitive of E with respect to w1
+Gw1 = ∂E/∂w1
+Now as E is depending of P which is dependet on w1, we can use the chain rule
+--> ∂E/∂w1
+--> ∂E/∂P * ∂P/∂w1
+--> 2 * 0.5(P-A)^(2-1) * ∂P/∂w1 
+--> (P-A) * ∂P/∂w1
+
+Update the weight with SGD:
+w1(new) = w1(old) - LR * Gw1
+
+
+
+
